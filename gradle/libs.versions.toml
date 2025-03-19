@@ -57,7 +57,6 @@ room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVer
 compose-navigation = {group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationVersion"}
 
 
-
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

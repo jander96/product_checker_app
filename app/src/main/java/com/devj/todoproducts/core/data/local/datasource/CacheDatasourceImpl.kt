@@ -4,8 +4,8 @@ import com.devj.todoproducts.core.data.local.db.daos.ProductDao
 import com.devj.todoproducts.core.data.local.db.entities.ProductEntity
 
 class CacheDatasourceImpl(private val productDao: ProductDao) : CacheDatasource {
-    override suspend fun getAll(): List<ProductCache> {
-        return productDao.getAll().map { it.toCache() }
+    override suspend fun getAll(offset: Int, limit: Int): List<ProductCache> {
+        return productDao.getAll(offset,limit).map { it.toCache() }
     }
 
     override suspend fun findById(id: Int): ProductCache {
