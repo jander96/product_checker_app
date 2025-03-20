@@ -6,16 +6,20 @@ import kotlinx.serialization.Serializable
 data class ProductDto(
     val id: Int,
     val createdAt: String,
+    val updatedAt: String,
     val name: String,
     val approved: Boolean,
+    val checked: Boolean,
 ) {
     companion object {
-        fun fromDomain(cache: Product): ProductDto {
+        fun fromDomain(domain: Product): ProductDto {
             return ProductDto(
-                id = cache.id,
-                createdAt = cache.createdDate,
-                name = cache.name,
-                approved = cache.approved,
+                id = domain.id,
+                createdAt = domain.createdDate,
+                updatedAt = "",
+                name = domain.name,
+                approved = domain.approved,
+                checked = domain.checked
             )
         }
     }
@@ -23,8 +27,10 @@ data class ProductDto(
         return Product(
             id = id,
             createdDate = createdAt,
+            updatedDate = updatedAt,
             name = name,
             approved = approved,
+            checked = checked
         )
     }
 }

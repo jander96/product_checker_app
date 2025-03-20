@@ -4,16 +4,20 @@ import com.devj.todoproducts.core.domain.model.Product
 data class ProductCache(
     val id: Int,
     val createdDate: String,
+    val updatedDate: String,
     val name: String,
     val approved: Boolean,
+    val checked: Boolean,
 ){
     companion object {
-        fun fromDomain(cache: Product): ProductCache {
+        fun fromDomain(domain: Product): ProductCache {
             return ProductCache(
-                id = cache.id,
-                createdDate = cache.createdDate,
-                name = cache.name,
-                approved = cache.approved,
+                id = domain.id,
+                createdDate = domain.createdDate,
+                name = domain.name,
+                approved = domain.approved,
+                checked = domain.checked,
+                updatedDate = domain.updatedDate
             )
         }
     }
@@ -23,6 +27,8 @@ data class ProductCache(
             createdDate = createdDate,
             name = name,
             approved = approved,
+            checked = checked,
+            updatedDate = updatedDate
         )
     }
 }

@@ -6,11 +6,17 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.devj.todoproducts.core.data.local.db.entities.ProductEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao {
-    @Query("SELECT * FROM product ORDER BY createdDate DESC LIMIT :limit OFFSET :offset")
-    suspend fun getAll(offset: Int, limit: Int): List<ProductEntity>
+    @Query("""
+    SELECT * FROM product 
+    WHERE checked = :checked 
+    ORDER BY updatedDate ASC 
+    LIMIT :limit OFFSET :offset
+""")
+    fun getAll(offset: Int, limit: Int , checked: Boolean = true): Flow<List<ProductEntity>>
 
     @Query("SELECT * FROM product WHERE id = :id")
     suspend fun findById(id: Int): ProductEntity

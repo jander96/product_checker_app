@@ -1,8 +1,10 @@
 package com.devj.todoproducts.features.reviewed.di
 
-import com.devj.todoproducts.features.reviewed.domain.usecase.GetReviewedProducts
+import com.devj.todoproducts.features.reviewed.presenter.viewmodel.ReviewedViewModel
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 val reviewedModule = module {
-    factory { GetReviewedProducts(get())}
+
+    viewModel { ReviewedViewModel(get()) }
 }

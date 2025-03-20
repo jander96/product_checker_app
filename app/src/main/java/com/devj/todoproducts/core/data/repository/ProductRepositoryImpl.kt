@@ -5,8 +5,9 @@ import com.devj.todoproducts.core.data.local.datasource.ProductCache
 import com.devj.todoproducts.core.data.network.api.ProductApi
 import com.devj.todoproducts.core.data.network.dto.ProductDto
 import com.devj.todoproducts.core.domain.data.ProductRepository
-import com.devj.todoproducts.core.domain.model.PaginatedResponse
 import com.devj.todoproducts.core.domain.model.Product
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class ProductRepositoryImpl(
     private val remoteDataSource: ProductApi,
@@ -15,32 +16,32 @@ class ProductRepositoryImpl(
     override suspend fun getProductsRemote(
         offset: Int,
         limit: Int
-    ): PaginatedResponse {
+    ): List<Product> {
         val remote = remoteDataSource.getProducts().map { it.toDomain() }
-        return PaginatedResponse(products = remote)
+        return remote
     }
 
-    override suspend fun getProductsLocal(
+    override fun getProductsLocal(
         offset: Int,
         limit: Int
-    ): PaginatedResponse {
-        val local =  localDataSource.getAll(offset,limit).map { it.toDomain() }
-        localDataSource.insertAll(*local.map { ProductCache.fromDomain(it) }.toTypedArray())
-        return PaginatedResponse(products = local)
+    ): Flow<List<Product>> {
+        return  localDataSource.getAll(offset,limit).map { it.map { it.toDomain() } }
     }
 
-    override suspend fun deleteProduct(product: Product) {
-        remoteDataSource.deleteProduct(ProductDto.fromDomain(product))
+    override suspend fun deleteProduct(product: Product, includeRemote: Boolean) {
+        if(includeRemote){
+            remoteDataSource.deleteProduct(ProductDto.fromDomain(product))
+        }
         localDataSource.delete(ProductCache.fromDomain(product))
     }
 
     override suspend fun createProduct(product: Product) {
-        remoteDataSource.createProduct(ProductDto.fromDomain(product))
-        localDataSource.insertAll(ProductCache.fromDomain(product))
+        val newProduct = remoteDataSource.createProduct(ProductDto.fromDomain(product))
+        localDataSource.insertAll(ProductCache.fromDomain(newProduct.toDomain()))
     }
 
     override suspend fun updateProduct(product: Product) {
-        remoteDataSource.updateProduct(ProductDto.fromDomain(product))
-        localDataSource.insertAll(ProductCache.fromDomain(product))
+        val newProduct = remoteDataSource.updateProduct(ProductDto.fromDomain(product))
+        localDataSource.insertAll(ProductCache.fromDomain(newProduct.toDomain()))
     }
 }

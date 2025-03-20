@@ -1,8 +1,10 @@
 package com.devj.todoproducts.core.data.local.datasource
 
+import kotlinx.coroutines.flow.Flow
+
 
 interface CacheDatasource {
-    suspend fun getAll(offset: Int, limit: Int): List<ProductCache>
+    fun getAll(offset: Int, limit: Int): Flow<List<ProductCache>>
 
     suspend fun findById(id: Int): ProductCache
 
