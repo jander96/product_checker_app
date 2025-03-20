@@ -21,7 +21,7 @@ Antes de comenzar, asegúrate de tener instalados los siguientes requisitos:
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/usuario/nombre-del-repo.git
+git clone https://github.com/jander96/product_checker_app.git
 cd nombre-del-repo
 ```
 ### 2. Abrir en Android Studio
