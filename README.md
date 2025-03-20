@@ -1,4 +1,5 @@
 # ToDo Products
+<img src="https://github.com/jander96/product_checker_app/blob/main/Screenshot_20250320_113513.png" alt="Descripción de la imagen" width="300"/>
 
 Es una app para la gestion de productos, el usuario puede aprobar o rechazar un producto . 
 Consta de 2 features principales
@@ -33,3 +34,15 @@ cd nombre-del-repo
 ### Instalar archivo .apk
 
 Puedes utilizar el archivo apk del repositorio [📦 ToDo Products](https://github.com/jander96/product_checker_app/blob/main/app/release/app-release.apk)
+
+## Detalles tecnicos
+- En el proyecto se utliza Arquitectura limpia con un enfoque modular `feature fisrt`
+- Para la capa de presenter se utliza Arquitectura **MVVM**
+- Se usa `ktor con client okhttp` para las llamdas a la api 
+- Room para el caching local
+- Ademas se implementa injeccion de dependencias con **Koin**
+- Compose para el sistema de vistas declarativas
+- Uso de Flows y corrutinas 
+
+
+👋 
