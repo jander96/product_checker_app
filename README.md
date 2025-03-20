@@ -32,4 +32,4 @@ cd nombre-del-repo
 
 ### Instalar archivo .apk
 
-Puedes utilizar el archivo apk del repositorio ()[]
+Puedes utilizar el archivo apk del repositorio [📦 ToDo Products](https://github.com/jander96/product_checker_app/blob/main/app/release/app-release.apk)
