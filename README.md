@@ -1,5 +1,5 @@
 # ToDo Products
-<img src="https://github.com/jander96/product_checker_app/blob/main/Screenshot_20250320_113513.png" alt="Descripción de la imagen" width="300"/>
+<img src="https://github.com/jander96/product_checker_app/blob/main/Screenshot_20250320_113513.png" alt="Descripción de la imagen" width="150"/>
 
 Es una app para la gestion de productos, el usuario puede aprobar o rechazar un producto . 
 Consta de 2 features principales
